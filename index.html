@@ -374,6 +374,64 @@ input:focus {
     display: block;
 }
 
+    /* =========================================================
+   GIFT MESSAGE TYPING
+========================================================= */
+
+.typing-message {
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+.typing-line {
+    display: block;
+    width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 10px auto;
+    opacity: 0;
+    border-right: 3px solid gold;
+
+    animation:
+        typingLine 2.5s steps(40, end) forwards,
+        blinkTypingCursor 0.7s step-end infinite;
+}
+
+.line-1 {
+    animation-delay: 0.5s;
+}
+
+.line-2 {
+    animation-delay: 3.2s;
+}
+
+.line-3 {
+    animation-delay: 5.9s;
+}
+
+@keyframes typingLine {
+
+    0% {
+        width: 0;
+        opacity: 1;
+    }
+
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+
+}
+
+@keyframes blinkTypingCursor {
+
+    50% {
+        border-color: transparent;
+    }
+
+}
+
 
 /* =========================================================
    GCASH
@@ -967,22 +1025,21 @@ input:focus {
                 Surprise!
             </h2>
 
-            <p
-                style="
-                    margin-top:15px;
-                    line-height:1.6;
-                "
-            >
+            <div class="typing-message">
 
-                Thank you for being an amazing
-                teacher!
+    <div class="typing-line line-1">
+        ✨ Thank you for being an amazing teacher! ✨
+    </div>
 
-                This little gift is our way of
-                saying <strong>thank you</strong>
-                for everything you do. ❤️
+    <div class="typing-line line-2">
+        This little gift is our way of saying
+    </div>
 
-            </p>
+    <div class="typing-line line-3">
+        <strong>thank you</strong> for everything you do. ❤️
+    </div>
 
+            </div>
 
             <!-- GCASH -->
 
