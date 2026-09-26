@@ -374,65 +374,36 @@ input:focus {
     display: block;
 }
 
-    /* =========================================================
-   GIFT MESSAGE TYPING
+/* =========================================================
+   MOBILE FRIENDLY GIFT TYPING
 ========================================================= */
 
 .typing-message {
     margin-top: 15px;
     line-height: 1.6;
+    text-align: center;
 }
 
 .typing-line {
-display: block;
-    width: 0;
-    max-width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    margin: 10px auto;
-    opacity: 0;
-    border-right: 3px solid gold;
+    display: block;
+    margin: 12px auto;
+    min-height: 1.6em;
 }
 
-.gift-message.show .line-1 {
-    animation:
-        typingLine 2.5s steps(40, end) forwards,
-        blinkTypingCursor 0.7s step-end infinite;
-    animation-delay: 0.5s;
+.typing-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: gold;
+    margin-left: 3px;
+    vertical-align: middle;
+    animation: blinkCursor 0.7s step-end infinite;
 }
 
-.gift-message.show .line-2 {
-    animation:
-        typingLine 2.5s steps(40, end) forwards,
-        blinkTypingCursor 0.7s step-end infinite;
-    animation-delay: 3.2s;
-}
-
-.gift-message.show .line-3 {
-    animation:
-        typingLine 2.5s steps(40, end) forwards,
-        blinkTypingCursor 0.7s step-end infinite;
-    animation-delay: 5.9s;
-}
-
-@keyframes typingLine {
-
-    0% {
-        width: 0;
-        opacity: 1;
-    }
-
-    100% {
-        width: 100%;
-        opacity: 1;
-    }
-
-}
-
-@keyframes blinkTypingCursor {
+@keyframes blinkCursor {
 
     50% {
-        border-color: transparent;
+        opacity: 0;
     }
 
 }
