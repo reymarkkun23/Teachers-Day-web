@@ -384,7 +384,7 @@ input:focus {
 }
 
 .typing-line {
-    display: block;
+display: block;
     width: 0;
     max-width: 100%;
     overflow: hidden;
@@ -392,21 +392,26 @@ input:focus {
     margin: 10px auto;
     opacity: 0;
     border-right: 3px solid gold;
+}
 
+.gift-message.show .line-1 {
     animation:
         typingLine 2.5s steps(40, end) forwards,
         blinkTypingCursor 0.7s step-end infinite;
-}
-
-.line-1 {
     animation-delay: 0.5s;
 }
 
-.line-2 {
+.gift-message.show .line-2 {
+    animation:
+        typingLine 2.5s steps(40, end) forwards,
+        blinkTypingCursor 0.7s step-end infinite;
     animation-delay: 3.2s;
 }
 
-.line-3 {
+.gift-message.show .line-3 {
+    animation:
+        typingLine 2.5s steps(40, end) forwards,
+        blinkTypingCursor 0.7s step-end infinite;
     animation-delay: 5.9s;
 }
 
