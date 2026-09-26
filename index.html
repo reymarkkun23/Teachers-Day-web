@@ -408,52 +408,6 @@ input:focus {
 
 }
 
-
-/* =========================================================
-   GCASH
-========================================================= */
-
-.money {
-
-    font-size: 45px;
-
-    margin: 15px 0;
-}
-
-.gcash-box {
-
-    margin-top: 20px;
-
-    padding: 20px;
-
-    border-radius: 20px;
-
-    background: #eef7ff;
-}
-
-.gcash-number {
-
-    font-size: 23px;
-
-    font-weight: bold;
-
-    margin: 10px;
-
-    letter-spacing: 1px;
-}
-
-.note {
-
-    font-size: 14px;
-
-    color: #666;
-
-    margin-top: 15px;
-
-    line-height: 1.5;
-}
-
-
 /* =========================================================
    CLAIM STATUS
 ========================================================= */
@@ -996,8 +950,8 @@ input:focus {
             class="gift-message"
         >
 
-            <div class="money">
-                💸
+            <div class="luck">
+                🍀
             </div>
 
             <h2>
@@ -1019,54 +973,6 @@ input:focus {
     </div>
 
             </div>
-
-            <!-- GCASH -->
-
-            <div class="gcash-box">
-
-                <h3>
-                    💙 GCash Gift
-                </h3>
-
-                <p
-                    style="margin-top:10px;"
-                >
-                    GCash Number:
-                </p>
-
-                <div
-                    id="gcashNumber"
-                    class="gcash-number"
-                >
-                    09XXXXXXXXX
-                </div>
-
-                <button
-                    class="primary-btn"
-                    onclick="copyGCash()"
-                >
-                    📋 Copy GCash Number
-                </button>
-
-                <p class="note">
-
-                    Please send the gift through
-                    GCash using the number above.
-
-                </p>
-
-            </div>
-
-
-            <p
-                id="copyMessage"
-                style="
-                    margin-top:15px;
-                    color:#2e8b57;
-                "
-            ></p>
-
-        </div>
 
 
         <!-- ALREADY CLAIMED -->
@@ -1137,12 +1043,7 @@ const SECRET_PASSWORD =
 // Unique ID of this gift in Supabase
 const GIFT_ID =
     "teacher2026";
-
-// Your GCash number
-const GCASH_NUMBER =
-    "09240563595";
-
-
+    
 /* =========================================================
    SCREEN SWITCHING
 ========================================================= */
