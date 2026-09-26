@@ -937,17 +937,10 @@ function checkPassword() {
 
         error.textContent = "";
 
-        showScreen(
+       showScreen(
             "giftScreen"
         );
-
-        /*
-           Check whether the gift
-           has already been claimed.
-        */
-
-        checkClaimStatus();
-
+        
     } else {
 
         error.textContent =
@@ -990,57 +983,6 @@ document
 
         }
     );
-
-
-/* =========================================================
-   CHECK CLAIM STATUS
-========================================================= */
-
-async function checkClaimStatus() {
-
-    const {
-        data,
-        error
-    } = await supabaseClient
-
-        .from("gifts")
-
-        .select("claimed")
-
-        .eq(
-            "id",
-            GIFT_ID
-        )
-
-        .single();
-
-
-    if (error) {
-
-        console.error(
-            "Database error:",
-            error
-        );
-
-        document
-            .getElementById(
-                "claimError"
-            )
-            .textContent =
-                "⚠️ Could not check the gift status.";
-
-        return;
-    }
-
-
-    if (data.claimed) {
-
-        showAlreadyClaimed();
-
-    }
-
-}
-
 
 /* =========================================================
    ONE-TIME CLAIM
