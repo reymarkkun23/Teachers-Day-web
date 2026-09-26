@@ -409,6 +409,65 @@ input:focus {
 }
 
 /* =========================================================
+   GOOD LUCK MESSAGE
+========================================================= */
+
+.good-luck-message {
+    display: none;
+    margin-top: 30px;
+    text-align: center;
+    animation: goodLuckAppear 1.5s ease-out forwards;
+}
+
+.good-luck-message h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-shadow:
+        0 0 8px gold,
+        0 0 20px rgba(255, 215, 0, 0.8);
+    animation: goodLuckGlow 2s ease-in-out infinite;
+}
+
+.good-luck-message p {
+    margin: 10px auto;
+    line-height: 1.6;
+}
+
+.good-luck-message strong {
+    display: block;
+    margin-top: 18px;
+    font-size: 20px;
+}
+
+@keyframes goodLuckAppear {
+
+    0% {
+        opacity: 0;
+        transform: translateY(25px) scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+@keyframes goodLuckGlow {
+
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px gold);
+    }
+
+    50% {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 18px gold);
+    }
+
+}
+
+/* =========================================================
    CLAIM STATUS
 ========================================================= */
 
@@ -965,12 +1024,26 @@ input:focus {
     </div>
 
     <div class="typing-line line-2">
-        This little gift is our way of saying
+        This little gift is my way of saying
     </div>
 
     <div class="typing-line line-3">
         <strong>thank you</strong> for everything you do. ❤️
     </div>
+            </div>
+    <div id="goodLuckMessage" class="good-luck-message">
+    <h2>
+        🍀GOOD LUCK, MA'AM REZA🍀
+    </h2>
+    <p>
+        Wishing you the very best on your upcoming exam! 
+    </p>
+    <p>
+        May all your hard work and preparation pay off.⭐✨
+    </p>
+    <strong>
+        You've got this! 💪📕🍀🙏💖
+    </strong>
 
             </div>
 
@@ -1530,6 +1603,14 @@ function startGiftTyping() {
     function typeLine(index) {
 
         if (index >= lines.length) {
+
+                const goodLuck =
+        document.getElementById(
+            "goodLuckMessage"
+        );
+
+    goodLuck.style.display = "block";
+
             return;
         }
 
