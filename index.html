@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Teachers' Day! 🎓</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #fff1b8, #ffd6e7, #d9f3ff);
+    color: #333;
+}
+
+/* ---------- GENERAL ---------- */
+
+.screen {
+    min-height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.screen.active {
+    display: flex;
+}
+
+.card {
+    width: min(92%, 500px);
+    padding: 35px 25px;
+    background: rgba(255,255,255,0.88);
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 5;
+}
+
+/* ---------- FLOATING PARTICLES ---------- */
+
+.particle {
+    position: absolute;
+    font-size: 25px;
+    animation: floatUp linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(110vh) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(-120vh) rotate(360deg);
+    }
+}
+
+/* ---------- GREETING ---------- */
+
+.greeting {
+    animation: fadeIn 1.5s ease;
+}
+
+.teacher-icon {
+    font-size: 70px;
+    animation: bounce 2s infinite;
+}
+
+h1 {
+    margin: 15px 0;
+    font-size: clamp(35px, 9vw, 60px);
+    color: #d85b8c;
+}
+
+.subtitle {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.highlight {
+    color: #d85b8c;
+    font-weight: bold;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    padding: 14px 25px;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: bold;
+    transition: 0.25s;
+}
+
+.primary-btn {
+    background: #d85b8c;
+    color: white;
+    box-shadow: 0 7px 15px rgba(216,91,140,0.3);
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+}
+
+/* ---------- PASSWORD ---------- */
+
+.lock {
+    font-size: 65px;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 15px;
+    margin: 20px 0 10px;
+    font-size: 18px;
+    text-align: center;
+    outline: none;
+}
+
+input:focus {
+    border-color: #d85b8c;
+}
+
+.error {
+    color: #e74c3c;
+    min-height: 25px;
+    margin-bottom: 10px;
+}
+
+.shake {
+    animation: shake 0.4s;
+}
+
+@keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+
+/* ---------- GIFT ---------- */
+
+.gift-area {
+    margin: 20px 0;
+}
+
+.gift {
+    font-size: 130px;
+    cursor: pointer;
+    display: inline-block;
+    animation: giftBounce 1.5s infinite;
+}
+
+.gift.open {
+    animation: openGift 0.8s forwards;
+}
+
+@keyframes giftBounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes openGift {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4) rotate(10deg); }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+.gift-message {
+    display: none;
+    animation: fadeIn 1s ease;
+}
+
+.gift-message.show {
+    display: block;
+}
+
+.money {
+    font-size: 45px;
+    margin: 15px 0;
+}
+
+.gcash-box {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #eef7ff;
+}
+
+.gcash-number {
+    font-size: 23px;
+    font-weight: bold;
+    margin: 10px;
+    letter-spacing: 1px;
+}
+
+.note {
+    font-size: 14px;
+    color: #666;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+/* ---------- ANIMATIONS ---------- */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+/* ---------- CONFETTI ---------- */
+
+.confetti {
+    position: fixed;
+    top: -20px;
+    width: 10px;
+    height: 18px;
+    animation: fall 3s linear forwards;
+    z-index: 100;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FLOATING BACKGROUND EMOJIS -->
+
+<div class="particle" style="left:5%; animation-duration:8s;">🎓</div>
+<div class="particle" style="left:15%; animation-duration:11s;">⭐</div>
+<div class="particle" style="left:30%; animation-duration:9s;">📚</div>
+<div class="particle" style="left:50%; animation-duration:12s;">❤️</div>
+<div class="particle" style="left:70%; animation-duration:10s;">✨</div>
+<div class="particle" style="left:85%; animation-duration:7s;">🌸</div>
+
+<!-- ================= GREETING ================= -->
+
+<section id="greetingScreen" class="screen active">
+
+    <div class="card greeting">
+
+        <div class="teacher-icon">👩‍🏫</div>
+
+        <h1>Happy Teachers' Day!</h1>
+
+        <p class="subtitle">
+            To <span class="highlight">Ma'am Reza Aurestila Areglado</span>,
+            thank you for your patience, guidance, and dedication.
+        </p>
+
+        <p class="subtitle">
+            You make learning more meaningful every day. ❤️
+        </p>
+
+        <button class="primary-btn" onclick="goToPassword()">
+            🎁 There's Something for You
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PASSWORD ================= -->
+
+<section id="passwordScreen" class="screen">
+
+    <div class="card">
+
+        <div class="lock">🔐</div>
+
+        <h2>Secret Gift</h2>
+
+        <p style="margin-top:10px;">
+            Enter the secret password to unlock your Teachers' Day gift.
+        </p>
+
+        <input
+            id="passwordInput"
+            type="password"
+            placeholder="Enter password"
+            autocomplete="off"
+        >
+
+        <p id="errorMessage" class="error"></p>
+
+        <button class="primary-btn" onclick="checkPassword()">
+            🔓 Unlock Gift
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= GIFT ================= -->
+
+<section id="giftScreen" class="screen">
+
+    <div class="card">
+
+        <h2>🎁 Your Gift Is Here!</h2>
+
+        <p style="margin-top:10px;">
+            Tap the gift box to open it.
+        </p>
+
+        <div class="gift-area">
+
+            <div
+                id="giftBox"
+                class="gift"
+                onclick="openGift()"
+            >
+                🎁
+            </div>
+
+        </div>
+
+        <div id="giftMessage" class="gift-message">
+
+            <div class="money">💸</div>
+
+            <h2>Surprise!</h2>
+
+            <p style="margin-top:15px; line-height:1.6;">
+                Thank you for being an amazing teacher!
+                This little gift is our way of saying
+                <strong>thank you</strong> for everything you do. ❤️
+            </p>
+
+            <div class="gcash-box">
+
+                <h3>💙 GCash Gift</h3>
+
+                <p style="margin-top:10px;">
+                    GCash Number:
+                </p>
+
+                <div id="gcashNumber" class="gcash-number">
+                    09XXXXXXXXX
+                </div>
+
+                <button
+                    class="primary-btn"
+                    onclick="copyGCash()"
+                >
+                    📋 Copy GCash Number
+                </button>
+
+                <p class="note">
+                    Please send the gift through GCash using the
+                    number above.
+                </p>
+
+            </div>
+
+            <p
+                id="copyMessage"
+                style="margin-top:15px; color:#2e8b57;"
+            ></p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================================================
+   CUSTOM SETTINGS
+   ========================================================= */
+
+// CHANGE THIS PASSWORD
+const SECRET_PASSWORD = "teacher";
+
+// CHANGE THIS TO YOUR GCash NUMBER
+const GCASH_NUMBER = "09XXXXXXXXX";
+
+
+/* =========================================================
+   SCREEN SWITCHING
+   ========================================================= */
+
+function showScreen(screenId) {
+
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    document.getElementById(screenId).classList.add("active");
+}
+
+
+function goToPassword() {
+
+    showScreen("passwordScreen");
+
+    setTimeout(() => {
+        document.getElementById("passwordInput").focus();
+    }, 300);
+}
+
+
+/* =========================================================
+   PASSWORD SYSTEM
+   ========================================================= */
+
+function checkPassword() {
+
+    const input = document.getElementById("passwordInput");
+    const error = document.getElementById("errorMessage");
+
+    const enteredPassword = input.value;
+
+    if (enteredPassword === SECRET_PASSWORD) {
+
+        error.textContent = "";
+
+        showScreen("giftScreen");
+
+        createConfetti();
+
+    } else {
+
+        error.textContent = "❌ Incorrect password. Try again!";
+
+        input.classList.remove("shake");
+
+        // Force browser to restart animation
+        void input.offsetWidth;
+
+        input.classList.add("shake");
+
+        input.value = "";
+        input.focus();
+    }
+}
+
+
+/* =========================================================
+   ENTER KEY SUPPORT
+   ========================================================= */
+
+document
+.getElementById("passwordInput")
+.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        checkPassword();
+    }
+
+});
+
+
+/* =========================================================
+   GIFT OPENING
+   ========================================================= */
+
+function openGift() {
+
+    const gift = document.getElementById("giftBox");
+    const message = document.getElementById("giftMessage");
+
+    gift.classList.add("open");
+
+    setTimeout(() => {
+
+        message.classList.add("show");
+
+        createConfetti();
+
+    }, 700);
+}
+
+
+/* =========================================================
+   GCASH NUMBER
+   ========================================================= */
+
+document.getElementById("gcashNumber").textContent = GCASH_NUMBER;
+
+
+function copyGCash() {
+
+    navigator.clipboard.writeText(GCASH_NUMBER)
+        .then(() => {
+
+            document.getElementById("copyMessage").textContent =
+                "✅ GCash number copied!";
+
+        })
+        .catch(() => {
+
+            document.getElementById("copyMessage").textContent =
+                "Please manually copy the GCash number.";
+
+        });
+
+}
+
+
+/* =========================================================
+   CONFETTI
+   ========================================================= */
+
+function createConfetti() {
+
+    const symbols = ["🎉", "✨", "🎊", "⭐", "💖", "🌸"];
+
+    for (let i = 0; i < 35; i++) {
+
+        const confetti = document.createElement("div");
+
+        confetti.className = "confetti";
+
+        confetti.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        confetti.style.left =
+            Math.random() * 100 + "vw";
+
+        confetti.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
+
+        confetti.style.fontSize =
+            (12 + Math.random() * 15) + "px";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 5000);
+    }
+}
+
+</script>
+
+</body>
+</html>
