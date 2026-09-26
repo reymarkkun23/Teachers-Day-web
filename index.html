@@ -1354,6 +1354,8 @@ async function claimGift() {
                 "show"
             );
 
+        startGiftTyping();
+
         createConfetti();
 
     }, 700);
@@ -1603,6 +1605,78 @@ function createConfetti() {
 
 }
 
+function startGiftTyping() {
+
+    const lines = [
+        document.querySelector(".line-1"),
+        document.querySelector(".line-2"),
+        document.querySelector(".line-3")
+    ];
+
+    const texts = [
+        "✨ Thank you for being an amazing teacher! ✨",
+        "This little gift is our way of saying",
+        "Thank you for everything you do. ❤️"
+    ];
+
+    lines.forEach(line => {
+        line.innerHTML = "";
+    });
+
+    function typeLine(index) {
+
+        if (index >= lines.length) {
+            return;
+        }
+
+        const line = lines[index];
+        const text = texts[index];
+
+        let character = 0;
+
+        const cursor =
+            document.createElement("span");
+
+        cursor.className =
+            "typing-cursor";
+
+        line.appendChild(cursor);
+
+        function typeCharacter() {
+
+            if (character < text.length) {
+
+                cursor.insertAdjacentText(
+                    "beforebegin",
+                    text[character]
+                );
+
+                character++;
+
+                setTimeout(
+                    typeCharacter,
+                    45
+                );
+
+            } else {
+
+                setTimeout(() => {
+
+                    cursor.remove();
+
+                    typeLine(index + 1);
+
+                }, 600);
+
+            }
+        }
+
+        typeCharacter();
+    }
+
+    typeLine(0);
+}
+    
 </script>
 
 </body>
