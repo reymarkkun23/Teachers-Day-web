@@ -1377,50 +1377,6 @@ function showAlreadyClaimed() {
         "block";
 }
 
-
-/* =========================================================
-   GCASH
-========================================================= */
-
-document
-    .getElementById(
-        "gcashNumber"
-    )
-    .textContent =
-        GCASH_NUMBER;
-
-
-function copyGCash() {
-
-    navigator.clipboard
-        .writeText(
-            GCASH_NUMBER
-        )
-
-        .then(() => {
-
-            document
-                .getElementById(
-                    "copyMessage"
-                )
-                .textContent =
-                    "✅ GCash number copied!";
-
-        })
-
-        .catch(() => {
-
-            document
-                .getElementById(
-                    "copyMessage"
-                )
-                .textContent =
-                    "Please manually copy the GCash number.";
-
-        });
-
-}
-
 /* =========================================================
    MAGIC BURST
 ========================================================= */
