@@ -460,7 +460,109 @@ input:focus {
 
     pointer-events: none;
 }
+    
+/* =========================================================
+   MAGIC CIRCLE
+========================================================= */
 
+.gift-area {
+    position: relative;
+}
+
+.gift-area::before {
+    content: "✦  ✧  ✦  ✧  ✦  ✧  ✦";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 190px;
+    height: 190px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border: 3px solid rgba(255, 215, 80, 0.7);
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    letter-spacing: 8px;
+
+    color: gold;
+
+    box-shadow:
+        0 0 15px gold,
+        0 0 35px rgba(255, 215, 80, 0.7),
+        inset 0 0 25px rgba(255, 215, 80, 0.4);
+
+    animation:
+        magicCircleRotate 8s linear infinite;
+
+    z-index: 0;
+
+    pointer-events: none;
+}
+
+.gift {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes magicCircleRotate {
+
+    from {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
+}
+
+.gift-area.magic-active::before {
+
+    animation:
+        magicCircleAppear 1s ease-out forwards,
+        magicCircleRotate 8s linear 1s infinite;
+}
+
+@keyframes magicCircleAppear {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.3);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+    
 /* =========================================================
    MAGIC SPARKLES
 ========================================================= */
@@ -1201,6 +1303,10 @@ async function claimGift() {
     gift.classList.add(
         "open"
     );
+
+    gift.parentElement.classList.add(
+        "magic-active"
+        );
 
     createMagicBurst(gift);
 
