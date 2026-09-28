@@ -16,7 +16,100 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+/* =========================================================
+   LUCK TRANSFER
+========================================================= */
 
+.luck-transfer {
+    display: none;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.luck-transfer-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.luck-loading {
+    position: relative;
+    width: 90%;
+    max-width: 350px;
+    height: 18px;
+    margin: auto;
+    border: 2px solid gold;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow:
+        0 0 10px gold,
+        0 0 25px rgba(255, 215, 0, 0.5);
+}
+
+.luck-progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        #ffe066,
+        #ffd700,
+        #fff3a3
+    );
+    border-radius: 20px;
+    transition: width 0.08s linear;
+}
+
+.luck-percent {
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+.luck-particles {
+    position: relative;
+    height: 45px;
+    pointer-events: none;
+}
+
+.luck-particle {
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    font-size: 20px;
+    animation:
+        luckFly 0.9s ease-in forwards;
+}
+
+@keyframes luckFly {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(-50%, 20px)
+            scale(0.4);
+    }
+
+    20% {
+        opacity: 1;
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                0
+            )
+            scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                -45px
+            )
+            scale(0.2)
+            rotate(180deg);
+    }
+
+}
+    
 /* =========================================================
    RESET
 ========================================================= */
@@ -1035,6 +1128,32 @@ input:focus {
         <strong>thank you</strong> for everything you do. ❤️
     </div>
             </div>
+    <div id="luckTransfer" class="luck-transfer">
+
+    <div class="luck-transfer-title">
+        🍀 Transferring a portion of my luck...
+    </div>
+
+    <div class="luck-loading">
+        <div
+            id="luckProgress"
+            class="luck-progress"
+        ></div>
+    </div>
+
+    <div
+        id="luckPercent"
+        class="luck-percent"
+    >
+        0%
+    </div>
+
+    <div
+        id="luckParticles"
+        class="luck-particles"
+    ></div>
+
+    </div>
     <div id="goodLuckMessage" class="good-luck-message">
     <h2>
         🍀GOOD LUCK, MA'AM REZA🍀
@@ -1561,12 +1680,7 @@ function startGiftTyping() {
 
         if (index >= lines.length) {
 
-                const goodLuck =
-        document.getElementById(
-            "goodLuckMessage"
-        );
-
-    goodLuck.style.display = "block";
+            startLuckTransfer();
 
             return;
         }
@@ -1617,6 +1731,99 @@ function startGiftTyping() {
     }
 
     typeLine(0);
+}
+
+function startLuckTransfer() {
+
+    const transfer =
+        document.getElementById("luckTransfer");
+
+    const progress =
+        document.getElementById("luckProgress");
+
+    const percent =
+        document.getElementById("luckPercent");
+
+    const particles =
+        document.getElementById("luckParticles");
+
+    transfer.style.display = "block";
+
+    let value = 0;
+
+    const symbols = [
+        "🍀",
+        "✨",
+        "💫",
+        "🌟"
+    ];
+
+    const loading =
+        setInterval(() => {
+
+            value++;
+
+            progress.style.width =
+                value + "%";
+
+            percent.textContent =
+                value + "%";
+
+            if (value % 4 === 0) {
+
+                const particle =
+                    document.createElement("span");
+
+                particle.className =
+                    "luck-particle";
+
+                particle.textContent =
+                    symbols[
+                        Math.floor(
+                            Math.random() *
+                            symbols.length
+                        )
+                    ];
+
+                particle.style.setProperty(
+                    "--x",
+                    (Math.random() * 160 - 80) + "px"
+                );
+
+                particles.appendChild(
+                    particle
+                );
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 900);
+            }
+
+            if (value >= 100) {
+
+                clearInterval(loading);
+
+                setTimeout(() => {
+
+                    transfer.innerHTML = `
+                        <div class="luck-transfer-title">
+                            🍀✨ Luck successfully transferred! ✨🍀
+                        </div>
+                    `;
+                    setTimeout(() => {
+
+            document
+                .getElementById(
+                    "goodLuckMessage"
+                )
+                .style.display = "block";
+
+        }, 1000);
+
+                }, 500);
+            }
+
+        }, 35);
 }
     
 </script>
